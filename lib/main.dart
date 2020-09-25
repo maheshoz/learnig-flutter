@@ -14,6 +14,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: Text("First App"),
       ),
@@ -21,17 +22,9 @@ class HomePage extends StatelessWidget {
           child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          // DrawerHeader(
-          //   child: Text(
-          //     "Navigation Drawer",
-          //     style: TextStyle(color: Colors.white),
-          //   ),
-          //   decoration: BoxDecoration(color: Colors.purple),
-          // ),
           UserAccountsDrawerHeader(
             accountName: Text("John"),
             accountEmail: Text("example@gmail.com"),
-            // currentAccountPicture: Image.network("https://randomuser.me/api/portraits/men/97.jpg"),
             currentAccountPicture: CircleAvatar(
               backgroundImage: NetworkImage(
                   "https://randomuser.me/api/portraits/men/97.jpg"),
@@ -51,7 +44,33 @@ class HomePage extends StatelessWidget {
           )
         ],
       )),
-      body: Container(),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+                  child: Card(
+            child: Column(
+              children: [
+                Image.asset("assets/bg2.jpg",
+                    fit: BoxFit.cover,),
+                SizedBox(height: 20,),
+                Text("Change Text", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+                 SizedBox(height: 20,),
+                 Padding(
+                   padding: const EdgeInsets.all(16.0),
+                   child: TextField(
+                     decoration: InputDecoration(
+                       border: OutlineInputBorder(),
+                       hintText: "Enter name",
+                       labelText: "Name",
+                     ),
+                   )
+                 ),
+              ],
+            ),
+          ),
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: Icon(Icons.edit),
