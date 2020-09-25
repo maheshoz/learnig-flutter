@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(MaterialApp(
     title: "First Flutter App",
+    theme: ThemeData(
+      primarySwatch: Colors.purple,
+    ),
     home: HomePage(),
   ));
 }
@@ -14,42 +17,44 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("First App"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: Container(
-            color: Colors.black,
-            // width: MediaQuery.of(context).size.width,
-            // height: MediaQuery.of(context).size.height,
-            width: 200,
-            height: 400,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 100,
-                    height: 100,
-                    color: Colors.green,
-                  ),
-                  Container(
-                    width: 100,
-                    height: 100,
-                    color: Colors.yellow,
-                  ),
-                  Container(
-                    width: 100,
-                    height: 100,
-                    color: Colors.red,
-                  ),
-                ],
-              ),
+      drawer: Drawer(
+          child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          // DrawerHeader(
+          //   child: Text(
+          //     "Navigation Drawer",
+          //     style: TextStyle(color: Colors.white),
+          //   ),
+          //   decoration: BoxDecoration(color: Colors.purple),
+          // ),
+          UserAccountsDrawerHeader(
+            accountName: Text("John"),
+            accountEmail: Text("example@gmail.com"),
+            // currentAccountPicture: Image.network("https://randomuser.me/api/portraits/men/97.jpg"),
+            currentAccountPicture: CircleAvatar(
+              backgroundImage: NetworkImage(
+                  "https://randomuser.me/api/portraits/men/97.jpg"),
             ),
           ),
-        ),
+          ListTile(
+            leading: Icon(Icons.person),
+            title: Text("Account"),
+            subtitle: Text("personal"),
+            trailing: Icon(Icons.edit),
+          ),
+          ListTile(
+            leading: Icon(Icons.email),
+            title: Text("Email"),
+            subtitle: Text("email.gmail.com"),
+            trailing: Icon(Icons.send),
+          )
+        ],
+      )),
+      body: Container(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.edit),
       ),
     );
   }
