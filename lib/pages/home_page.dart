@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../Drawer.dart';
-import '../change_name_card.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,13 +10,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   TextEditingController _nameController = TextEditingController();
   var myText = "Change me";
+  var url = "https://jsonplaceholder.typicode.com/photos";
+  var data;
 
   @override
   void initState() {
     super.initState();
+    getData();
+  }
+
+  getData() async {
+    var res = await http.get(url);
+    // print(res.body);
+    data = jsonDecode(res.body);
+    print(data);
+    setState(() {});
   }
 
   @override
@@ -28,13 +38,18 @@ class _HomePageState extends State<HomePage> {
       ),
       drawer: MyDrawer(),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Card(
-            child: ChangeNameCard(myText: myText, nameController: _nameController),
-          ),
-        ),
-      ),
+          padding: const EdgeInsets.all(16.0),
+          child: data != null
+              ? ListView.builder(itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(data[index]["title"]),
+                  subtitle: Text("ID: ${data[index]["id"]}"),
+                  leading: Image.network(data[index]["url"]),
+                );
+              })
+              : Center(
+                  child: CircularProgressIndicator(),
+                )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           myText = _nameController.text;
@@ -45,4 +60,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
