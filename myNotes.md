@@ -1,6 +1,8 @@
 
 ## Flutter start
 
+[Followed this Youtube video tutorial](https://www.youtube.com/watch?v=Ib2FlirtcmE)
+
 Good blogpost on [Extensions link](https://medium.com/flutter-community/must-have-vs-code-extensions-for-working-with-flutter-e31a421b9c68)
 
 [Flutter Extensions pack](https://marketplace.visualstudio.com/items?itemName=GulajavaMinistudio.complete-flutter-extension-pack)
