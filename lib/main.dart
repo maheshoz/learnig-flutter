@@ -1,4 +1,3 @@
-import 'dart:js';
 
 import 'package:first_flutter_app/pages/home_page.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,6 @@
 import 'package:first_flutter_app/bg_image.dart';
 import 'package:flutter/material.dart';
 
-import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
